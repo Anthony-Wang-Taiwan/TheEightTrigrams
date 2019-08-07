@@ -1,8 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 
-for i in range(1, 2):
-    url = "https://www.eee-learning.com/simple64/1"
+for i in range(1, 65):
+    url = "https://www.eee-learning.com/simple64/" + str(i)
     response = requests.get(url)
 
     soup = BeautifulSoup(response.text, 'lxml')
@@ -17,6 +17,6 @@ for i in range(1, 2):
     for tag in class_tr_tags[1:]:
         td_tags = tag.find_all('td')
         contant = contant + td_tags[0].text + td_tags[1].text + '\n'
-    
-    with open(str(i)+".txt", 'w') as file:
+
+    with open("dailyFiles/" + str(i) + ".txt", 'w') as file:
         file.write(contant)
